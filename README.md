@@ -1,6 +1,6 @@
 # spm-transitive
 
-There are XCode frameworks and one SPM library.  The dependency graph is simply:
+There are three XCode frameworks and one SPM library.  The dependency graph is simply:
 
     XCodeFrameworkC -> XCodeFrameworkB -> XCodeFrameworkA -> SPMModule
 
