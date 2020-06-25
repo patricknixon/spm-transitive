@@ -18,6 +18,6 @@ There are three XCode frameworks and one SPM library.  The dependency graph is s
   Since this `@objc` type depends on `SPMModule` and is public,  the Objective-C
   compatibility header will `@import SPMModule`.
   
-- **XcodeFrameworkC** whos that `XCodeFrameworkB` can be imported from
+- **XcodeFrameworkC** shows that `XCodeFrameworkB` can be imported from
   Objective-C but not from Swift.  Simply uncomment the line in
   `XCodeFrameworkC.swift` to demonstrate the issue.
