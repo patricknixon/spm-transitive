@@ -1,23 +1,17 @@
 # spm-transitive
 
-There are three XCode frameworks and one SPM library.  The dependency graph is simply:
+Try to compile `MyFrameworkC`.  It will fail with
 
-    XCodeFrameworkC -> XCodeFrameworkB -> XCodeFrameworkA -> SPMModule
+    🛑 MyFrameworkB-Swift.h: Module 'SwiftModule' not found
 
-- **SPMModule** declares a single  `@objc public protocol` and that's it.
+There are 3 XCode frameworks and one SPM library.  The dependency graph is simply:
 
-- **XCodeFrameworkA** is empty, and only exists to demonstrate that `SPMModule`
-  is still visible transitively downstream.
+    MyFrameworkC -> MyFrameworkB -> MyFrameworkA -> MySwiftModule
 
-- **XCodeFrameworkB** demonstrates that `SPMModule` is still visible to both
-  Swift and Objective-C, but not from public Objective-C headers.  In addition,
-  it declares this public type from Swift:
+- **MySwiftModule** declares a single  `@objc public protocol` and that's it.
 
-      @objc public class PublicType: NSObject, SPMProtocol {}
+- **MyFrameworkA** is empty.
 
-  Since this `@objc` type depends on `SPMModule` and is public,  the Objective-C
-  compatibility header will `@import SPMModule`.
-  
-- **XcodeFrameworkC** shows that `XCodeFrameworkB` can be imported from
-  Objective-C but not from Swift.  Simply uncomment the line in
-  `XCodeFrameworkC.swift` to demonstrate the issue.
+- **MyFrameworkB** imports `MySwiftModule` and defines a public `@objc` class that conforms to the protocol declared in `MySwiftModule`.
+
+- **MyFrameworkC** simply attempts to `import MyFrameworkB`.
