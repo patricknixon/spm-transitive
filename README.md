@@ -8,7 +8,7 @@ There are 3 XCode frameworks and one SPM library.  The dependency graph is simpl
 
     MyFrameworkC -> MyFrameworkB -> MyFrameworkA -> MySwiftLibrary
 
-- **MySwiftModule** declares a single  `@objc public protocol` and that's it.
+- **MySwiftLibrary** declares a single  `@objc public protocol` and that's it.
 
 - **MyFrameworkA** is empty.
 
